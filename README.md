@@ -1,7 +1,7 @@
 # Web_Dev
 
 ## 1. Django
-
+learning note of coursera course: Django for everyone
 ### 1.1 Model View Controller
 3 functions of a web app
 * Model\
@@ -86,7 +86,10 @@ from django.http import HttpResponseRedirct
 def bounce(request):
     return HttpResponse('some url')
 ```
-
+OR
+```
+<a href= "{% url 'game:aview' x %}"></a>
+```
 * Templates\
 Django Template language (DTL) - Jinja2\
 Eg.
@@ -119,9 +122,34 @@ class GameView(View):
 {% url 'view_name' aname.id%}\
 {% author.get_url%}
 3. logic\
-{% if x>100 %}\
-{% end if %}
+    * if \
+    {% if x>100 %}\
+    {% end if %}
+    * for 
+        ```
+        <ul>
+        {% for x  in names %}
+        <li>{{ x }}<li>
+        {% endfor %}
+        <ul>
+        ```
+        can walk through levels of dictionaries\
+        like: a.b.c.d 
 4. blocks\
-{% block content %}\
-{% endblock %}
-
+    tmpl/base.html:
+    ```
+    <body>
+    {% block content %}
+    {% endblock %}
+    </body>
+    ```
+    To fillin the tmpl's block: \
+    con.html:
+    ```
+    {% extends 'tmpl/base.html' %}
+    {% block content %}
+    ...
+    {% endblock %}
+    ```
+    Then inside gameview.py:\
+    return render(request,'tmpl/con.html',x)
