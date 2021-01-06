@@ -61,3 +61,67 @@
     #ORDER BY
     User.objects.values().order_by("email")
     ```
+
+### 1.3 View and URLs
+django looks at urls.py to select view for every incoming requests
+* the view form views.py
+    * handle incoming data -> copy to database using ORM
+    * retrieve data form db and render page
+    * produce HTML -> return it to browser
+* reading the URL
+www.xxx.com/views/rest/24\
+        django app; view within the app; url path param
+
+* taking data from user:\
+the escape function will prevent cross-site scripting -> generate safe html entities.
+```
+from django.utils.html import escape
+def a_view(request):
+    response="""<html>""" + escape(request.GET['guess']) + """</html>"""
+```
+* redirct
+```
+from django.http import HttpResponse
+from django.http import HttpResponseRedirct
+def bounce(request):
+    return HttpResponse('some url')
+```
+
+* Templates\
+Django Template language (DTL) - Jinja2\
+Eg.
+```
+Data: {'x': 'abc'}
+tpl: <h1></h1><pre> {{ x }} </pre>
+outcome: <h1></h1><pre> abc </pre>
+```
+Code eg.
+```
+#url
+#tmpl/game/200
+
+#urls.py
+path('game/<slug:guess>',views.GameView.as_view())
+
+#gameview
+from django.shortcut import render
+from django.views import View
+class GameView(View):
+    def get(self,request,guess):
+        x= {'guess',int(guess)};
+        return render(request, 'tmpl/cond.html',x) 
+```
+
+* DTL
+1. substitute\
+{{ zap }} -> {{zap|safe}} means do not run escape filter on zap
+2. calling code\
+{% url 'view_name' aname.id%}\
+{% author.get_url%}
+3. logic\
+{% if x>100 %}\
+{% end if %}
+4. blocks\
+{% block content %}\
+{% endblock %}
+
