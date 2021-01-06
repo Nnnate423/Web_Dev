@@ -50,16 +50,22 @@ learning note of coursera course: Django for everyone
     ```
     from usermodel.models import User
 
+    PS. rmb to implement __str__ method in model classes -> allow easier visualization
+
     #SELECT*
     User.objects.values()
+    User.objects.all()
     #Select WHERE
     User.objects.filter(name="xx").values()
+    User.objects.get(name="xx") //can only be used for select 1 return val
     #DELETE
     User.objects.filter(name="xx").delete()
     #UPDATE
     User.objects.filter(name="xx").update(email="yy")
     #ORDER BY
     User.objects.values().order_by("email")
+    #COUNT
+    ~.count()
     ```
 
 ### 1.3 View and URLs
@@ -71,6 +77,8 @@ django looks at urls.py to select view for every incoming requests
 * reading the URL
 www.xxx.com/views/rest/24\
         django app; view within the app; url path param
+* path() args\
+The path() function is passed four arguments, two required: route and view, and two optional: kwargs, and name. \
 
 * taking data from user:\
 the escape function will prevent cross-site scripting -> generate safe html entities.
