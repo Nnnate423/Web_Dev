@@ -79,7 +79,8 @@ www.xxx.com/views/rest/24\
         django app; view within the app; url path param
 * path() args\
 The path() function is passed four arguments, two required: route and view, and two optional: kwargs, and name. \
-
+the 'name' value as called by the {% url %} template tag like: {% url 'name' some_val%}\
+some_val will fill in the ```'<int:xxx>/'``` slot of the path
 * taking data from user:\
 the escape function will prevent cross-site scripting -> generate safe html entities.
 ```
