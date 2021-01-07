@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!-- {% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}"> -->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My TODO list</title>
+  </head>
+  <body>
+    <h2> update ur task </h2>
+
+        <div>
+        <b>{{ entry.todo_text }}  <br> Date: {{ entry.pub_date }}</b><br><br>
+        <div>
+
+            <form action = "{% url 'todo:index' %}" method="POST">
+                {% csrf_token %}
+                    <input type="hidden" name="id"  value="{{ entry.id }}" >
+                    <input type="text" name="todo_text" value='{{ entry.todo_text }}'>
+                    {% if entry.status %}
+                        <input type="checkbox" name="status" value="True" checked>
+                    {%else%}
+                        <input type="checkbox" name="status" value="True">
+                    {%endif %}
+                    <input type="submit" value="update">
+                </form>
+        <a href="{% url 'todo:index'%}">cancel</a>
+        <a href="{% url 'todo:delete' entry.id%}">delete</a>
+  </body>
+</html>

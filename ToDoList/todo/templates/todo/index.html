@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- {% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}"> -->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My TODO list</title>
+  </head>
+  <body>
+    <h2> my list </h2>
+    <form action = "{% url 'todo:index' %}" method="POST">
+    {% csrf_token %}
+        <input type="text" name="todo_text" id=1>
+        <input type="submit" value="submit">
+    </form>
+    <br>
+    {% if todo_entry_list %}
+
+        {% for entry in todo_entry_list %}
+        
+        <div>
+        <a href="{% url 'todo:update' entry.id%}">update</a>&nbsp;
+        <b>{{ entry.todo_text }}</b> 
+        </div>
+        {% endfor %}
+
+        {% else %}
+            <p>No todo task.</p>
+        {% endif %}
+  </body>
+</html>
