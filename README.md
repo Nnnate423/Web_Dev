@@ -98,6 +98,8 @@ def bounce(request):
 OR
 ```
 <a href= "{% url 'game:aview' x %}"></a>
+<a href = "{% url 'login' %}"?next{{ request.path }}>login </a>
+//goto login and then go back here
 ```
 * Templates\
 Django Template language (DTL) - Jinja2\
@@ -162,3 +164,26 @@ class GameView(View):
     ```
     Then inside gameview.py:\
     return render(request,'tmpl/con.html',x)
+### 1.4 cookie, session, user login
+<a href = "{% url 'login' %}"?next{{ request.path }}>login </a>
+```
+{% if next %}
+{% if user.is_authenticated %}
+{% else %}
+{% endif %}
+{% else %}
+{% endif %}
+```
+In Python:
+```
+if request.user.is_authenticated():
+    print(request.user.username)
+```
+* to require login
+```
+from django.contrib.auth.mixins import LoginRequiredMixin
+class ProetctedView(LoginRequiredMixin,View):
+    def get(self,request):
+        return render(request, "xxx/xxx.html")
+```
+

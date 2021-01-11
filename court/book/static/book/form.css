@@ -1,0 +1,42 @@
+form  {
+	width: 40%;
+	margin: 0px;
+	padding: 20px;
+	border: 1px solid #B0C4DE;
+	border-radius: 0px 0px 10px 10px;
+}
+.grp_input {
+	margin: 10px 0px 10px 20px;
+}
+.grp_input label {
+	display: block;
+	text-align: left;
+	margin: 2px;
+}
+.grp_input input {
+	height: 30px;
+	width: 25%;
+	padding: 5px 10px;
+	font-size: 15px;
+	border-radius: 4px;
+	border: 1px solid gray;
+}
+.submit_btn{
+	padding: 9px;
+	font-size: 15px;
+	color: black;
+	background: #b3cccc;
+	border: none;
+	border-radius: 2px;
+}
+.error {
+	width: 25%; 
+	margin: 0px; 
+	padding: 5px; 
+	border: 1px solid #a94442; 
+	color: black; 
+	
+	background: #f2dede; 
+	border-radius: 2px; 
+	text-align: left;
+}

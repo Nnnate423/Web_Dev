@@ -1,0 +1,15 @@
+{% extends 'book/standard.html' %}
+{% block content%}
+<form method="POST" action= "" >
+    {% csrf_token %}
+    Username: <input type="text" name="username" ><br>
+    Password: <input type="password" name="password" ><br>
+<input type="submit" name = "login " value = "login">
+</form>
+{%if user.is_authenticated%}
+<span><a href = "{% url 'book:logout' %}">logout</a></span>
+{%endif%}
+{% for m in messages%}
+<p>{{m}}</p>
+{% endfor %}
+{%endblock%}

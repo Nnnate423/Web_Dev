@@ -18,9 +18,9 @@
 </div>
   <div class="text3">
   <nav><ul>
-      <b style="padding-right: 60px"><a href="courts.html" style="text-decoration: none;color: white;">Courts</a></b>
-      <b style="padding-right: 60px"><a href="booking.php" style="text-decoration: none;color: white;">Booking</a></b>
-      <b><a href="about_us.html" style="text-decoration: none;color: white;">About Us</a></b>
+      <b style="padding-right: 60px"><a href="" style="text-decoration: none;color: white;">Courts</a></b>
+      <b style="padding-right: 60px"><a href="" style="text-decoration: none;color: white;">Booking</a></b>
+      <b><a href="" style="text-decoration: none;color: white;">About Us</a></b>
     </ul>
   </nav>
 </div>
@@ -29,6 +29,11 @@
   <small><i>Copyright &copy; 2019 Crossover</i></small><br>
   <small><i><a href="mailto:nnnate423@gmail.com" style="color: white;">weiyijian@gmail.com</a>
   </i></small>
+  {% if user.is_authenticated %}
+  <span><a href = "{% url 'book:logout' %}"> logout</a></span>
+  {% else %}
+  <span><a href = "{% url 'book:login' %}"> log in</a></span>
+  {% endif %}
   </footer>
 
 
