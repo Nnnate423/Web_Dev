@@ -21,7 +21,7 @@ class slot(models.Model):
 
 class order(models.Model):
     def __str__(self):
-        return str(self.id) + " uname: "+ self.username + "slots: "+ str(self.slotid) + "  " + str(self.slot_num)
+        return str(self.id) + " uname: "+ str(self.username) + "slots: "+ str(self.slotid) + "  " + str(self.slot_num)
     username = models.ForeignKey(User, on_delete = models.CASCADE)
     slotid = models.ForeignKey(slot, on_delete = models.CASCADE)
     slot_num = models.IntegerField(default= 0)

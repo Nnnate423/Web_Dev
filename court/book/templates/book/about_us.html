@@ -1,0 +1,27 @@
+{% extends 'book/standard.html' %}
+{% block content%}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'book/standard.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'book/form.css' %}">
+<h2>About Us</h2>
+    
+<div>
+<img src="{% static 'book/images/about.png' %}" width="380" height="220" id="floatleft" alt="Lighthouse Island">
+</div>
+<div>
+<p style="margin-left: 480px;">We are a public organization for all basketball lovers.<br>We offer free basketball courts booking for our members.<br> If you have any feedbacks, please let us know!</p>
+<ul>
+<li>Address: Nanyang Techonological University</li>
+<li>Contact: 0000-0000</li>
+</ul>
+</div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+{% for m in messages%}
+<p>{{m}}</p>
+{% endfor %}
+{%endblock%}

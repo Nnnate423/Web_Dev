@@ -3,9 +3,67 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'book/standard.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'book/form.css' %}">
-<div class="content">
+<style type="text/css">
+    table td{
+    border:1px solid;
+    }
+    </style>
+{% if searchform %}
+<p>Search your courts: </p>
+<form method="POST" action= "" style="border: none;">
+    {% csrf_token %}
+    {% for field in searchform %}
+        {{field.label}}
+        {{field}}
+    {% endfor %}
+<input type="submit" name = "search " value = "search">
+</form>
+{% endif %}
 
+{% if slots %}
 
+<table style="border: solid; ">
+    <tr>
+      <th>Court name</th>
+      <th>Location</th>
+      <th>Date</th>
+      <th>choose slot</th>
+    </tr>
+    {% for slot in slots%}
+    <tr>
+        <td>{{slot.courtid.courtname}}</td>
+        <td>{{slot.courtid.location}}</td>
+        <td>{{ slot.day }}</td>
+        <td>
+            <form method="POST" action= "{% url 'book:do_book'%}" style="border: none;">
+                {% csrf_token %}
+                <input type="hidden" name= "slot_id" value= {{slot.id}}>
+                <input type="hidden" name= "username" value= {{user.username}}>
+                <select id="slot_num" name="slot_num">
+                    {% if slot.slot1 %}
+                        <option value="" disabled>slot1</option>
+                    {% else %}
+                        <option value="1">slot1</option>
+                    {% endif %}
+                    {% if slot.slot2 %}
+                        <option value="" disabled>slot2</option>
+                    {% else %}
+                        <option value="2">slot2</option>
+                    {% endif %}
+                    {% if slot.slot3 %}
+                        <option value="" disabled>slot3</option>
+                    {% else %}
+                        <option value="3">slot3</option>
+                    {% endif %}
+                </select></br>
+                <input type="submit" name = "transact" value = "transact">
+            </form>
+        </td>
+      </tr>
+  {% endfor %}
+  </table>
+
+{% endif %}
 
 {% for m in messages%}
 <p>{{m}}</p>

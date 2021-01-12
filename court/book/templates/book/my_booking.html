@@ -1,0 +1,17 @@
+{% extends 'book/standard.html' %}
+{% block content%}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'book/standard.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'book/form.css' %}">
+
+my booking page
+{% for order in orders%}
+    <span>{{order.id}}</span>
+    <span>{{order.username}}</span>
+    <span>{{order.slotid}}</span>
+    <span>{{order.slot_num}}</span>
+{% endfor %}
+{% for m in messages%}
+<p>{{m}}</p>
+{% endfor %}
+{%endblock%}
