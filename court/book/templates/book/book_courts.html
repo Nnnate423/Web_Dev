@@ -41,17 +41,17 @@
                 <input type="hidden" name= "username" value= {{user.username}}>
                 <select id="slot_num" name="slot_num">
                     {% if slot.slot1 %}
-                        <option value="" disabled>slot1</option>
+                        <option value="1" disabled>slot1</option>
                     {% else %}
                         <option value="1">slot1</option>
                     {% endif %}
                     {% if slot.slot2 %}
-                        <option value="" disabled>slot2</option>
+                        <option value="2" disabled>slot2</option>
                     {% else %}
                         <option value="2">slot2</option>
                     {% endif %}
                     {% if slot.slot3 %}
-                        <option value="" disabled>slot3</option>
+                        <option value="3" disabled>slot3</option>
                     {% else %}
                         <option value="3">slot3</option>
                     {% endif %}

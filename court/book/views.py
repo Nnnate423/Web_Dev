@@ -8,7 +8,7 @@ from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.db import transaction
 
 # Create your views here.
 def Index(request):
@@ -50,8 +50,10 @@ def CourtsView(request):
     context["courts"] = all_court
     return render(request, "book/courts.html", context)
 
+#show user the available courts
 class BookView(LoginRequiredMixin,View):
     login_url = 'book:login'
+    
     def get(self,request):
         context={}
         form= SearchForm()
@@ -74,31 +76,46 @@ class BookView(LoginRequiredMixin,View):
         context['slots'] = slots[:]
         return render(request, "book/book_courts.html",context)
 
+# user try to book a slot
+@transaction.atomic
 def DoBook(request):
     context={}
+    #if post
     if request.method == 'POST':
         slot_int=int(request.POST.get('slot_num','0'))
+        # if slot_int not inside the 3 value
         if slot_int not in [1,2,3]:
             messages.info(request, 'you did not select any slots')
             return redirect('book:book_courts')
+
         slot_id=int(request.POST.get('slot_id',0))
         the_slot=slot.objects.get(pk=slot_id)
-        #username=request.POST.get('username')
-        update_slot = slot.objects.get(pk=slot_id)
-        if slot_int == 1:
-            update_slot.slot1=True
-        elif slot_int ==2:
-            update_slot.slot2=True
-        else:
-            update_slot.slot3=True
-        update_slot.save()
+        #construct new order record and commit
         new_order = order(username= request.user,slotid=the_slot, slot_num=slot_int)
         new_order.save()
-        print(update_slot,new_order)
+        update_slot = slot.objects.get(pk=slot_id)
+        err=False
+        if slot_int == 1:
+            if update_slot.slot1==True: err= True
+            else: update_slot.slot1=True
+        elif slot_int ==2:
+            if update_slot.slot2==True: err= True
+            else: update_slot.slot2=True
+        else:
+            if update_slot.slot3==True: err= True
+            else: update_slot.slot3=True
+        #if error happens, rollback
+        if err: 
+            transaction.set_rollback(True)
+            messages.info(request, 'Sorry, your slot already taken.')
+            return redirect('book:book_courts')
+        # commit update message
+        update_slot.save()
         return redirect('book:my_booking')
     else:
         return redirect('book:book_courts')
 
+#list users booking records
 def MyBookingView(request):
     context={}
     update_slot = slot.objects.get(pk=1)
