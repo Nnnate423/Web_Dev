@@ -187,3 +187,11 @@ class ProetctedView(LoginRequiredMixin,View):
         return render(request, "xxx/xxx.html")
 ```
 
+### 1.5 forms
+Django handles three distinct parts of the work involved in forms:
+
+* preparing and restructuring data to make it ready for rendering
+* creating HTML forms for the data
+* receiving and processing submitted forms and data from the client
+
+Check documentation:  https://docs.djangoproject.com/en/3.1/topics/forms/

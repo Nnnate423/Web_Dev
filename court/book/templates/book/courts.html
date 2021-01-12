@@ -1,0 +1,28 @@
+{% extends 'book/standard.html' %}
+{% block content%}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'book/standard.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'book/form.css' %}">
+<div class="content">
+
+  <div>
+    <h2>Introduction of Courts</h2>
+    <table border="solid">
+      <tr>
+        <th>Court</th>
+        <th>Court name</th>
+        <th>Location</th>
+      </tr>
+    {% for court in courts %}
+      <tr>
+          <td><img src="{% static "" %}book/images/courts/court_{{forloop.counter0}}.png" alt="image not exist" height=120 width=180></img></td>
+          <td>{{ court.courtname }}</td>
+          <td>{{ court.location }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+{% for m in messages%}
+<p>{{m}}</p>
+{% endfor %}
+{%endblock%}

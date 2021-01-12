@@ -1,0 +1,13 @@
+{% extends 'book/standard.html' %}
+{% block content%}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'book/standard.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'book/form.css' %}">
+<div class="content">
+
+
+
+{% for m in messages%}
+<p>{{m}}</p>
+{% endfor %}
+{%endblock%}

@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-#from .models import 
+from .models import *
 from django.urls import reverse
 from django.utils import timezone
-from django.contrib.auth.forms import UserCreationForm
+#from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from .forms import CreateUserForm
 from django.contrib import messages
@@ -41,3 +41,14 @@ def Logout(request):
     context={}
     logout(request)
     return redirect('book:login')
+
+def CourtsView(request):
+    context={}
+    all_court = court.objects.all()
+    context["courts"] = all_court
+    return render(request, "book/courts.html", context)
+
+def BookView(request):
+    context={}
+    
+    return render(request, "book/book_courts.html", context)
