@@ -3,8 +3,8 @@ from django.utils import timezone
 import datetime
 
 c_list=[]
-c_list.append(court(courtname = "Marine Terrace", location = "6 Marine Terrace, Singapore 440006", indoor = False, std = True ))
 #c_list.append(court(courtname = "", location = "", indoor = False, std = True ))
+c_list.append(court(courtname = "Marine Terrace", location = "6 Marine Terrace, Singapore 440006", indoor = False, std = True ))
 c_list.append(court(courtname = "Net free Courts", location = "5 Marsiling Dr, Singapore 730005", indoor = False, std = True ))
 c_list.append(court(courtname = "SRC Courts", location = "61 Nanyang Dr, Singapore 637335", indoor = False, std = True ))
 c_list.append(court(courtname = "St George's Courts", location = "4C St George's Ln, Singapore 322004", indoor = True, std = False ))
