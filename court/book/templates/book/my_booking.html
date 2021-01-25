@@ -3,15 +3,33 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'book/standard.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'book/form.css' %}">
+<style type="text/css">
+    table td{
+    border:1px solid;
+    }
+    </style>
 
-my booking page
-{% for order in orders%}
-    <span>{{order.id}}</span>
-    <span>{{order.username}}</span>
-    <span>{{order.slotid}}</span>
-    <span>{{order.slot_num}}</span>
-{% endfor %}
-{% for m in messages%}
+
+<p>{{user.username}}'s booking</p>
+<table style="border: solid; ">
+    <tr>
+      <th>Order ID</th>
+      <th>Court</th>
+      <th>Date</th> 
+      <th>Slot number</th> 
+      
+    </tr>
+    {% for order in orders%}
+    <tr>
+        <td>{{order.id}}</td>
+        <td>{{order.slotid.courtid.courtname}}</td>
+        <td>{{order.slotid.day}}</td>
+        <td>{{order.slot_num}}</td>
+      </tr>
+  {% endfor %}
+  </table>
+
+  {% for m in messages%}
 <p>{{m}}</p>
 {% endfor %}
 {%endblock%}

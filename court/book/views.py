@@ -72,6 +72,7 @@ class BookView(LoginRequiredMixin,View):
         else: 
             if_std = [True] if request.POST['select2'] == "2" else [False]
         ids=court.objects.filter(indoor__in = if_indoor, std__in = if_std)
+        #filter today's slots
         slots = slot.objects.select_related().filter(courtid__in = ids)
         context['slots'] = slots[:]
         return render(request, "book/book_courts.html",context)
