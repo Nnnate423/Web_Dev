@@ -195,3 +195,59 @@ Django handles three distinct parts of the work involved in forms:
 * receiving and processing submitted forms and data from the client
 
 Check documentation:  https://docs.djangoproject.com/en/3.1/topics/forms/
+
+
+
+# 2. Spring boot
+## 1. annotation & basics
+* @SpringBootApplication
+    @SpringBootApplication = @SpringBootConfiguration + @EnableAutoConfiguration + @ComponentScan
+* @WebMvcTest
+    for mock spring mvc test, create mockMvc and do rest calls to controller.
+* @Automired
+    can be used on:
+    * constructor
+    * property
+    * setter
+* validation
+    * @NotNull: a constrained CharSequence, Collection, Map, or Array is valid as long as it's not null, but it can be empty
+    * @NotEmpty: a constrained CharSequence, Collection, Map, or Array is valid as long as it's not null and its size/length is greater than zero
+    * @NotBlank: a constrained String is valid as long as it's not null and the trimmed length is greater than zero  
+
+* mapping
+    * @RequestMapping General-purpose request handling 
+    * @GetMapping Handles HTTP GET requests
+    * @PostMapping Handles HTTP POST requests 
+    * @PutMapping Handles HTTP PUT requests
+    * @DeleteMapping Handles HTTP DELETE requests
+    * @PatchMapping Handles HTTP PATCH requests
+* Spring Web dependency
+    it brings spring MVC and embeded tomcat.
+
+
+
+## 2. JDBC
+* JDBC template
+
+* rowmapper
+use class or method reference by like: this::method
+```
+@Override
+public Ingredient findOne(String id) {
+  return jdbc.queryForObject(
+      "select id, name, type from Ingredient where id=?",
+      new RowMapper<Ingredient>() {
+}
+  public Ingredient mapRow(ResultSet rs, int rowNum)
+      throws SQLException {
+    return new Ingredient(
+        rs.getString("id"),
+        rs.getString("name"),
+        Ingredient.Type.valueOf(rs.getString("type")));
+};
+}, id);
+```
+
+* save data 
+    1. Directly, using the update() method
+    2. Using the SimpleJdbcInsert wrapper class
