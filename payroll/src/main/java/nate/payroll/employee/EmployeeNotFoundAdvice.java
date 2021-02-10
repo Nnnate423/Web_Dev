@@ -1,4 +1,4 @@
-package nate.payroll;
+package nate.payroll.employee;
 
 
 import org.springframework.http.HttpStatus;

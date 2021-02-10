@@ -1,2 +1,7 @@
-package nate.tacocloud.data;public interface TacoRepo {
+package nate.tacocloud.data;
+
+import nate.tacocloud.Taco;
+
+public interface TacoRepo {
+    Taco save(Taco design);
 }

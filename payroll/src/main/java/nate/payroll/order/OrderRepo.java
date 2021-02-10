@@ -1,4 +1,4 @@
-package nate.payroll;
+package nate.payroll.order;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
