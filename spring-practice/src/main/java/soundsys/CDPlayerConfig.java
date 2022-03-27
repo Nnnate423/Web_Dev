@@ -27,6 +27,7 @@ public class CDPlayerConfig {
 
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(CDPlayerConfig.class);
+        System.out.println("-------BRANCH 1 MARK--------");
         Sgt cd = (Sgt) context.getBean("sgt");
         CDPlayer cdPlayer = (CDPlayer) context.getBean("cdPlayer");
         cdPlayer.playCd();
