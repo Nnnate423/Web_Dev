@@ -11,7 +11,10 @@ public class Audience {
 
     @Before("cdplaylog()")
     public void CDConsoleLog(){
-        System.out.println("--------CD STARTS PLAYING--------");
+
+        System.out.println("--------CD STARTS PLAYING BRANCH 1 MARK--------");
+        System.out.println("-------BRANCH 1 MARK--------");
+
     }
 
     @After("cdplaylog()")
