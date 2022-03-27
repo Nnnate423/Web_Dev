@@ -11,8 +11,9 @@ public class Audience {
 
     @Before("cdplaylog()")
     public void CDConsoleLog(){
-        System.out.println("--------CD STARTS PLAYING TEST 2--------");
+        System.out.println("--------CD STARTS PLAYING MERGED--------");
         System.out.println("--------TEST 2--------");
+        System.out.println("--------MAIN--------");
 
     }
 
