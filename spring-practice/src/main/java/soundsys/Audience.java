@@ -13,6 +13,7 @@ public class Audience {
     public void CDConsoleLog(){
         System.out.println("--------CD STARTS PLAYING MERGED--------");
         System.out.println("--------TEST 2--------");
+        System.out.println("--------change 1--------");
         System.out.println("--------MAIN--------");
 
     }
